@@ -35,14 +35,14 @@ public class DecoderActivity extends AppCompatActivity
     setContentView(R.layout.activity_decoder);
 
     mainLayout = (ViewGroup) findViewById(R.id.main_layout);
-
-    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-        == PackageManager.PERMISSION_GRANTED) {
-      initQRCodeReaderView();
-    } else {
-      requestCameraPermission();
-    }
-  }
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+            == PackageManager.PERMISSION_GRANTED) {
+          initQRCodeReaderView();
+        } else {
+          requestCameraPermission();
+        }
+    }else initQRCodeReaderView();
 
   @Override protected void onResume() {
     super.onResume();
